@@ -1,11 +1,8 @@
 FactoryGirl.define do
   factory :user do
-    name "MyString"
-string "MyString"
-email "MyString"
-string "MyString"
-password "MyString"
-string "MyString"
+    name "Test Doe"
+email "test@doe.com"
+password "password"
   end
 
 end
