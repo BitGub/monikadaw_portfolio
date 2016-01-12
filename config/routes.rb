@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+  
   resources :users, only: [:index, :edit, :show]
 
   # The priority is based upon order of creation: first created -> highest priority.
