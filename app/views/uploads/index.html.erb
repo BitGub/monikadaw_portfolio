@@ -1,0 +1,10 @@
+<% if @uploads.blank? %>
+  <p>Upload some photo's sexy!</p>
+<% else %>
+  <% @uploads.each do |upload| %>
+
+  <%= upload.title %>
+  <br>
+  <%= image_tag upload.upload.url %>
+  <% end %>
+<% end %>
