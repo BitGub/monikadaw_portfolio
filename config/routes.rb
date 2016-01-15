@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
   
   resources :users, only: [:index, :edit, :show]
+  
+  resources :uploads, only: [:new, :create, :edit, :index]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
