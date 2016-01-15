@@ -1,10 +1,14 @@
-<% if @uploads.blank? %>
+<% if @uploads_by_year.blank? %>
   <p>Upload some photo's sexy!</p>
 <% else %>
-  <% @uploads.each do |upload| %>
-
-  <%= upload.title %>
+  <% @uploads_by_year.sort.each do |year, uploads| %>
   <br>
-  <%= image_tag upload.upload.url %>
+  <%= year %>
+  <% for upload in uploads %>
+  <br>
+    <%= upload.title %>
+    <br>
+    <%= image_tag upload.upload.url %>
+    <% end %>
   <% end %>
 <% end %>
