@@ -10,6 +10,5 @@ User.delete_all
 admin = User.new(:email => 'default@default.com',
             :name => 'Jane Doe',
             :password => 'password',
-            :password_confirmation => 'password',
-            :status => 'active')
+            :password_confirmation => 'password')
 admin.save!
