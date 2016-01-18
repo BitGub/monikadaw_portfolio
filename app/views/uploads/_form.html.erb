@@ -1,3 +1,4 @@
+<%= link_to '< Back', uploads_path %>
 <%= form_for @upload, :html => {:multipart => true} do |f| %>
   <p>
     <%= f.label :title %><br />
@@ -23,3 +24,5 @@
   <p><%= f.submit %></p>
   
 <% end %>
+
+<%= link_to '< Back', uploads_path %>
