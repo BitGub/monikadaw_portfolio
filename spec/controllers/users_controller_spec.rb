@@ -14,7 +14,7 @@ RSpec.describe UsersController, type: :controller do
     
     it "redirects to index page upon success" do
       sign_in(@user)
-      expect(current_path).to eq('/users/index')
+      expect(current_path).to eq('/uploads')
     end
     
     it "redirects to login page when not logged in" do
