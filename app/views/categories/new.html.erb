@@ -1,0 +1,13 @@
+<%= link_to '< Back', categories_path %>
+
+<%= form_for @category do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  
+  <p><%= f.submit %></p>
+<%end%>
+
+<%= link_to '< Back', categories_path %>
