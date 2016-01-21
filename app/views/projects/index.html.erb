@@ -1,0 +1,5 @@
+<% @projects.each do |project| %>
+
+  <h2><%= link_to project.name, edit_project_path(project) %> </h2>
+
+<% end %>

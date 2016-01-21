@@ -1,0 +1,33 @@
+<%= link_to '< Back', projects_path %>
+<%= form_for @project do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <p><%= f.label "Type"%> <br />
+  		<%= 
+  			collection_select(:project, 
+  			:category_id, 
+  			Category.order(:name).all, 
+  			:id, 
+  			:name, 
+  			{:prompt => "Select a Category"},
+        id: "project[category_id]"
+        ) 
+		  %>
+  </p>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  
+  <p>
+    <%= f.label :year %><br />
+    <%= f.select :year, (Time.zone.now.year - 16)..(Time.zone.now.year) %>
+  </p>
+  <p><%= f.submit %></p>
+  
+<% end %>
+
+<%= link_to '< Back', uploads_path %>

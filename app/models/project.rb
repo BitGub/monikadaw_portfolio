@@ -3,4 +3,5 @@ class Project < ActiveRecord::Base
   
   validates :category_id, presence: true
   validates :year, presence: true
+  validates :name, presence: true
 end
