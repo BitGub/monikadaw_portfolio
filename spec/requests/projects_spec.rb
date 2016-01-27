@@ -19,7 +19,7 @@ RSpec.describe "Projects", type: :request do
       expect { click_button "Create Project" }.to change(Project, :count).by(1)
     end
     
-    it "does not submit form with blank category", :focus do
+    it "does not submit form with blank category" do
       sign_in(@user)
       visit new_project_path
       
@@ -30,7 +30,7 @@ RSpec.describe "Projects", type: :request do
       expect { click_button "Create Project" }.not_to change(Project, :count)
     end
     
-    it "does not submit form with blank name", :focus do
+    it "does not submit form with blank name" do
       sign_in(@user)
       visit new_project_path
       

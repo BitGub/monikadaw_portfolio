@@ -26,6 +26,10 @@
     <%= f.label :year %><br />
     <%= f.select :year, (Time.zone.now.year - 16)..(Time.zone.now.year) %>
   </p>
+  
+  <% if @project.id %>
+  <p><%= collection_check_boxes(:project, :upload_ids, @uploads, :id, :title) %></p>
+  <% end %>
   <p><%= f.submit %></p>
   
 <% end %>

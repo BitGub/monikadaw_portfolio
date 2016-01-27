@@ -19,8 +19,23 @@ class ProjectsController < ApplicationController
     end
   end
   
+  def edit
+    @project = Project.find(params[:id])
+    @uploads = Upload.all
+  end
+  
+  def update
+    @project = Project.find(params[:id])
+    if @project.update_attributes(project_params)
+      flash[:success] = "Project Successfully updated!"
+      redirect_to projects_path
+    else
+      render 'edit'
+    end
+  end
+  
   private
     def project_params
-      params.require(:project).permit(:category_id, :name, :description, :year)
+      params.require(:project).permit(:category_id, :name, :description, :year, upload_ids: [])
     end
 end
