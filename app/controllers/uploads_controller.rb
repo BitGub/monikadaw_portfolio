@@ -2,8 +2,7 @@ class UploadsController < ApplicationController
   before_action :authorize
   
   def index
-    @uploads = Upload.all.order('position ASC')
-    @uploads_by_year = @uploads.group_by { |upload| upload.year }
+    @uploads = Upload.all
   end
   
   def new
