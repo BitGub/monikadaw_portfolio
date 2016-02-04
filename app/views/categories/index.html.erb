@@ -1,5 +1,16 @@
-<% @categories.each do |category| %>
+<div class="row">
+  <div class="col-md-offset-11">
+    <%= link_to "New", new_category_path, class: "btn btn-primary" %>
+  </div>
+</div>
 
-  <h2><%= link_to category.name, edit_category_path(category) %> </h2>
+<% if @categories.blank? %>
+  <p>Click the New button to create a new Category </p>
+<% else %>
 
+  <% @categories.each do |category| %>
+
+    <h2><%= link_to category.name, edit_category_path(category) %> </h2>
+
+    <% end %>
 <% end %>
