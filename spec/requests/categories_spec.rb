@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Categories", type: :request do
+RSpec.describe "Admin::Categories", type: :request do
   before do
     @user = FactoryGirl.create(:user)
   end
@@ -9,7 +9,7 @@ RSpec.describe "Categories", type: :request do
     
     it "submits valid form" do
       sign_in(@user)
-      visit new_category_path
+      visit new_admin_category_path
     
       fill_in "category[name]", with: "Category99"
       
@@ -18,7 +18,7 @@ RSpec.describe "Categories", type: :request do
     
     it "does not submit invalid form" do
       sign_in(@user)
-      visit new_category_path
+      visit new_admin_category_path
     
       expect { click_button "Create Category" }.not_to change(Category, :count)
     end

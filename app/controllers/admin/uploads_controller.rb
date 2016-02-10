@@ -1,4 +1,4 @@
-class UploadsController < ApplicationController
+class Admin::UploadsController < ApplicationController
   before_action :authorize
   
   def index
@@ -13,7 +13,7 @@ class UploadsController < ApplicationController
     @upload = Upload.new(upload_params)
     if @upload.save
       flash[:sucess] = "upload saved!"
-      redirect_to uploads_path
+      redirect_to admin_uploads_path
     end
   end
   
@@ -25,7 +25,7 @@ class UploadsController < ApplicationController
     @upload = Upload.find(params[:id])
         if @upload.update_attributes(upload_params)
           flash[:sucess] = "upload saved!"
-          redirect_to uploads_path
+          redirect_to admin_uploads_path
         else
           flash[:danger] = "invalid submission"
           render 'edit'

@@ -5,10 +5,14 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy'
   get '/listings' => 'home#listings'  
   
+  namespace :admin do
+    # resources :users
+    resources :categories
+    # resources :projects
+    resources :uploads
+  end
   resources :users
-  resources :categories
   resources :projects
-  resources :uploads
   resources :homes  
 
   # The priority is based upon order of creation: first created -> highest priority.

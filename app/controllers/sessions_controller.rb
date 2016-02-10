@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
-      redirect_to '/uploads'
+      redirect_to '/admin/uploads'
     else
     # If user's login doesn't work, send them back to the login form.
       flash.now[:danger] = 'Invalid email/password combination'

@@ -14,7 +14,7 @@ RSpec.describe "Projects", type: :request do
       
       select @category.name, from: "project[category_id]"
       fill_in "project[description]", with: "This is a long winded description of the Project"
-      select "2005", from: "project_year"
+      select "2005", from: "project[year]"
       
       expect { click_button "Create Project" }.to change(Project, :count).by(1)
     end
