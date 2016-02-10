@@ -1,0 +1,12 @@
+<% projects.each do |project| %>
+<div class="row margin-b-2">
+    <% project.uploads.each do |upload|%>
+  <div class="col-sm-6">
+    <a href="<%=upload.upload.url%>"><%= image_tag upload.upload.url, class: "img-responsive thumbnail" %>
+    <div class="caption">
+      <h4><a href="<%=upload.upload.url %>"><%= project.year %></a></h4>
+    </div>
+  </div>  
+</div>
+  <%end%>
+    <%end%>

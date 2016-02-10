@@ -12,9 +12,9 @@
         <%= link_to "Monika Daw", '#', id: "logo" %>
         <nav>
           <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "Home", root_path %></li>
-            <li><%= link_to "Artwork", "#" %></li>
-            <li><%= link_to "Artwork", "#" %></li>
+              <% @categories.each do |category|%>
+              <li><%= link_to category.name.capitalize, homes_path(id: "#{category.id}") %></li>
+            <% end %>
             <li><%= link_to "Contact", "#"%></li>
           </ul>
       </div>
