@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Admin::UsersController < ApplicationController
   before_action :authorize
   
   def index
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "Settings updated"
-      redirect_to uploads_path
+      redirect_to admin_uploads_path
     else
       flash.now[:danger] = "Invalid form submission"
       render 'edit'

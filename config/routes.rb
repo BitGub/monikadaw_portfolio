@@ -6,12 +6,12 @@ Rails.application.routes.draw do
   get '/listings' => 'home#listings'  
   
   namespace :admin do
-    # resources :users
+    resources :users
     resources :categories
     # resources :projects
     resources :uploads
   end
-  resources :users
+  # resources :users
   resources :projects
   resources :homes  
 

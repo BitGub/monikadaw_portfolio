@@ -9,7 +9,7 @@ RSpec.describe "users/index.html.erb", type: :view do
   end
   
   it 'renders index view' do
-    visit users_path
+    visit admin_users_path
     expect(rendered).to render_template("index")
   end
 end

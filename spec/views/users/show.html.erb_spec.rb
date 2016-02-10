@@ -9,7 +9,7 @@ RSpec.describe "users/show.html.erb", type: :view do
   end
   
   it 'renders show view' do
-    visit user_path(user)
+    visit admin_user_path(user)
     expect(rendered).to render_template("show")
   end
 end
