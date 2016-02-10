@@ -8,11 +8,11 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
     resources :categories
-    # resources :projects
+    resources :projects
     resources :uploads
   end
   # resources :users
-  resources :projects
+  # resources :projects
   resources :homes  
 
   # The priority is based upon order of creation: first created -> highest priority.
