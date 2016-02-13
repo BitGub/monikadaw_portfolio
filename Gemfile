@@ -27,9 +27,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-# gem 'bootstrap-sass'
+gem 'bootstrap-sass'
 
-gem 'carrierwave'
+gem 'carrierwave' 
 gem 'mysql2'
 gem 'rmagick'
 
