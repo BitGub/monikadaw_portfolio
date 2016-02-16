@@ -11,8 +11,9 @@ class Admin::UploadsController < ApplicationController
   
   def create
     @upload = Upload.new(upload_params)
+    @upload.user_id = current_user.id
     if @upload.save
-      flash[:sucess] = "upload saved!"
+      flash[:success] = "upload saved!"
       redirect_to admin_uploads_path
     end
   end
@@ -24,7 +25,7 @@ class Admin::UploadsController < ApplicationController
   def update
     @upload = Upload.find(params[:id])
         if @upload.update_attributes(upload_params)
-          flash[:sucess] = "upload saved!"
+          flash[:success] = "upload saved!"
           redirect_to admin_uploads_path
         else
           flash[:danger] = "invalid submission"
@@ -35,7 +36,7 @@ class Admin::UploadsController < ApplicationController
   private
   
     def upload_params
-      params.require(:upload).permit(:upload, :title, :description, :year, :position)
+      params.require(:upload).permit(:upload, :title, :description, :year, :position, :user_id)
     end
   
   
