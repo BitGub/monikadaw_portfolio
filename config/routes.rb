@@ -8,7 +8,13 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
     resources :categories
-    resources :projects
+    
+    resources :projects do  
+      collection do
+        get 'show_uploads_browser'
+      end
+    end
+    
     resources :uploads
   end
   # resources :users

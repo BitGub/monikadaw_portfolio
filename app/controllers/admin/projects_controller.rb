@@ -34,6 +34,10 @@ class Admin::ProjectsController < ApplicationController
     end
   end
   
+  # def show_uploads_browser
+  #
+  # end
+  
   private
     def project_params
       params.require(:project).permit(:category_id, :name, :description, :year, upload_ids: [])
