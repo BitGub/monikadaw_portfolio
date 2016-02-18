@@ -1,0 +1,23 @@
+$('#UploadsDialog').dialog({
+	autoOpen: true,
+	maxHeight: 500,
+	width: 380,
+	modal: true,
+	closeOnEscape: true,
+	buttons:
+	
+  {
+		"Cancel":
+		{  
+			id: 'button-cancel',
+			text: 'Cancel',
+			class: 'docButton	panelGreyButton',
+			click: function (){
+				 $('#UploadsDialog').dialog( "close" );
+		 	}
+		}
+  },
+	open: function() {		
+		$('#UploadsBrowser').html("<%= escape_javascript(render('uploads_browser')) %>");
+	}
+});
