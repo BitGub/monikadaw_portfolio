@@ -1,0 +1,53 @@
+$('#Dialog').dialog({
+	autoOpen: true,
+	modal: true,
+	closeOnEscape: true,
+  width:"95%",
+  height:$(window).height() - 100,
+  title:'Photo Browser',
+	buttons:
+	
+  {
+		"Cancel":
+		{  
+			id: 'button-cancel',
+			text: 'Cancel',
+			class: 'btn btn-default',
+			click: function (){
+				 $(this).dialog( "close" );
+		 	}
+		},
+    "OK":
+    {
+      id: 'button-ok',
+      text: "Add Photo(s)",
+      class: 'btn btn-primary',
+      click: function () {
+          var ids_array = [];
+          var data = [];
+          $('.checkbox').each(function(){
+            if ($(this).is(':checked')) {
+              ids_array.push( $(this).val() );
+            }
+          });
+          
+          $.ajax({
+            url: "/admin/projects/attach",
+            dataType: 'script',
+            data: {
+               upload_ids: ids_array
+            },
+            success: function(){
+              $('#Dialog').dialog( "close" );
+            }
+          });
+      }
+    }
+  },
+	open: function() {		
+		$('#UploadsBrowser').html("<%= escape_javascript(render(:partial => 'uploads_browser', locals: { uploads: @uploads} )) %>");
+	},
+  close: function () {
+    $(this).html('<div id="UploadsBrowser"></div>');
+  }
+});

@@ -1,0 +1,14 @@
+<div class='container'>
+  <div class='row'>
+    <% @uploads.each do |upload| %>
+      <div class='col-md-2'>
+        <h2 class="u-header"><%= upload.title %></h2>
+        <div class="img-100">
+          <%= image_tag upload.upload.url %>
+        </div>
+        <% checked = upload.projects.exists?(id: @project.id) unless @project.blank? %>
+        <p><%= check_box_tag "project[upload_ids][#{upload.id}]", upload.id, checked, class: "checkbox" %></p>
+      </div>
+       <%end%>
+    </div>
+</div>
