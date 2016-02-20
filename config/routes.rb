@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :projects do  
       collection do
         get 'show_uploads_browser'
+        get 'attach'
       end
     end
     

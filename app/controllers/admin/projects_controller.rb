@@ -11,9 +11,11 @@ class Admin::ProjectsController < ApplicationController
   
   def create
     @project = Project.new(project_params)
+    @project.upload_ids = session[:upload_ids] if session[:upload_ids]
     if @project.save
+      session[:upload_ids] = nil
       flash[:success] = "Project Successfully Created!"
-      redirect_to projects_path
+      redirect_to admin_projects_path
     else
       render 'new'
     end
@@ -28,15 +30,23 @@ class Admin::ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     if @project.update_attributes(project_params)
       flash[:success] = "Project Successfully updated!"
-      redirect_to projects_path
+      redirect_to admin_projects_path
     else
       render 'edit'
     end
   end
   
-  # def show_uploads_browser
-  #
-  # end
+  def show_uploads_browser
+    @uploads = Upload.all
+    
+    @project = Project.where(params[:id]).first
+    
+  end
+  
+  def attach
+    render nothing: true
+    session[:upload_ids] = params[:upload_ids]
+  end
   
   private
     def project_params
