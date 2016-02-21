@@ -6,7 +6,7 @@
   		<%= 
   			collection_select(:project, 
   			:category_id, 
-  			Category.order(:name).all, 
+  			Category.order(:name).where(trashed: false), 
   			:id, 
   			:name, 
   			{:prompt => "Select a Category"},

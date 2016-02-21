@@ -8,9 +8,6 @@
   <p>Click the New button to create a new Category </p>
 <% else %>
 
-  <% @categories.each do |category| %>
+<%= render 'categories', categories: @categories%>
 
-    <h2><%= link_to category.name, edit_admin_category_path(category) %> </h2>
-
-    <% end %>
 <% end %>
