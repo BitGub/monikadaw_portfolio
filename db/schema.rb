@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221173544) do
+ActiveRecord::Schema.define(version: 20160221180442) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.boolean  "public",                 null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.boolean  "public",                 default: false, null: false
+    t.boolean  "trashed",                default: false, null: false
   end
 
   create_table "projects", force: :cascade do |t|
