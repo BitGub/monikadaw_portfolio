@@ -29,6 +29,7 @@ class Admin::ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     if @project.update_attributes(project_params)
+      @project.upload_ids = session[:upload_ids] if session[:upload_ids]
       flash[:success] = "Project Successfully updated!"
       redirect_to admin_projects_path
     else
@@ -38,7 +39,6 @@ class Admin::ProjectsController < ApplicationController
   
   def show_uploads_browser
     @uploads = Upload.all
-    
     @project = Project.where(params[:id]).first
     
   end

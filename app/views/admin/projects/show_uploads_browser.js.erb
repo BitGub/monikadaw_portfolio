@@ -45,7 +45,7 @@ $('#Dialog').dialog({
     }
   },
 	open: function() {		
-		$('#UploadsBrowser').html("<%= escape_javascript(render(:partial => 'uploads_browser', locals: { uploads: @uploads} )) %>");
+		$('#UploadsBrowser').html("<%= escape_javascript(render(:partial => 'uploads_browser', locals: { uploads: @uploads, project: @project } )) %>");
 	},
   close: function () {
     $(this).html('<div id="UploadsBrowser"></div>');

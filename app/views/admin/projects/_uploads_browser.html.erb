@@ -6,7 +6,7 @@
         <div class="img-100">
           <%= image_tag upload.upload.url %>
         </div>
-        <% checked = upload.projects.exists?(id: @project.id) unless @project.blank? %>
+        <% checked = upload.projects.exists?(id: project.id) unless project.blank? %>
         <p><%= check_box_tag "project[upload_ids][#{upload.id}]", upload.id, checked, class: "checkbox" %></p>
       </div>
        <%end%>
