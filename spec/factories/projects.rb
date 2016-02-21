@@ -5,6 +5,7 @@ FactoryGirl.define do
     year "2000"
     category
     public false
+    trashed false
   end
 
 end

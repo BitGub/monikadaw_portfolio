@@ -2,7 +2,7 @@ class Admin::ProjectsController < ApplicationController
   before_action :authorize
   
   def index
-    @projects = Project.all
+    @projects = Project.where(trashed: false)
   end
   
   def new
@@ -46,6 +46,15 @@ class Admin::ProjectsController < ApplicationController
   def attach
     render nothing: true
     session[:upload_ids] = params[:upload_ids]
+  end
+  
+  def archive
+    Project.archive(params[:id])
+    @projects = Project.where(trashed: false)
+    respond_to do |format|
+      format.js {}
+      flash.now[:success]="Archive successful"
+    end
   end
   
   private

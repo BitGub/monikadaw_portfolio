@@ -8,9 +8,6 @@
   <p>Click the New button to create a new Project </p>
 <% else %>
 
-  <% @projects.each do |project| %>
-
-    <h2><%= link_to project.name, edit_admin_project_path(project) %> </h2>
-
-  <% end %>
+  <%= render 'projects', projects: @projects %>
+  
 <% end %>

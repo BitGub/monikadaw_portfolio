@@ -1,0 +1,21 @@
+<div id="ProjectsIndex">
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @projects.each do |project| %>
+      <tr>
+        <td><h2><%= link_to project.name, edit_admin_project_path(project) %> </h2></td>
+        <td><p><%= link_to "edit", edit_admin_project_path(project) %> </p></td>
+        <td><p><%= link_to "archive", archive_admin_project_path(project), remote: true %></p></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

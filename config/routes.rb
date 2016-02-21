@@ -14,6 +14,9 @@ Rails.application.routes.draw do
         get 'show_uploads_browser'
         get 'attach'
       end
+      member do
+        get 'archive'
+      end
     end
     
     resources :uploads do
