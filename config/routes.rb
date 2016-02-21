@@ -18,8 +18,9 @@ Rails.application.routes.draw do
     
     resources :uploads do
       member do
-        post 'archive'
+        get 'archive'
       end
+    end
   end
   # resources :users
   # resources :projects

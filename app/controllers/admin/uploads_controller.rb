@@ -33,6 +33,10 @@ class Admin::UploadsController < ApplicationController
         end
   end
   
+  def archive
+    Upload.archive(params[:id])
+  end
+  
   private
   
     def upload_params
