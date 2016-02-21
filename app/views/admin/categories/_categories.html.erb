@@ -1,3 +1,7 @@
+<% if @categories.blank? %>
+  <p>Click the New button to create a new Category </p>
+<% else %>
+
 <div id="CategoriesIndex">
 
   <table class="table table-hover">
@@ -13,9 +17,11 @@
       <tr>
         <td><h2><%= link_to category.name, edit_admin_category_path(category) %> </h2></td>
         <td><p><%= link_to "edit", edit_admin_category_path(category) %> </p></td>
-        <td><p><%= link_to "archive", archive_admin_category_path(category), remote: true %></p></td>
+        <td><p><%= link_to "archive", archive_admin_category_path(category), remote: true, :data => {:confirm => 'Are you sure? This is archive all projects Associated to this Category and hide it from the public.'} %></p></td>
       </tr>
     <% end %>
     </tbody>
   </table>
 </div>
+
+<% end %>

@@ -4,10 +4,4 @@
   </div>
 </div>
 
-<% if @categories.blank? %>
-  <p>Click the New button to create a new Category </p>
-<% else %>
-
 <%= render 'categories', categories: @categories%>
-
-<% end %>

@@ -2,7 +2,7 @@ class Admin::CategoriesController < ApplicationController
   before_action :authorize
   
   def index
-    @categories = Category.where(trashed: false)
+    @categories = Category.categorized.where(trashed: false)
   end
   
   def new
@@ -20,11 +20,11 @@ class Admin::CategoriesController < ApplicationController
   end
   
   def edit
-    @category = Category.find(params[:id])
+    @category = Category.categorized.find(params[:id])
   end
   
   def update
-    @category = Category.find(params[:id])
+    @category = Category.categorized.find(params[:id])
     if @category.update_attributes(category_params)
       flash[:success] = "Category Updated!"
       redirect_to admin_categories_path
@@ -33,16 +33,16 @@ class Admin::CategoriesController < ApplicationController
     end
   end
   
-  def destroy
-    @category = Category.find(params[:id])
-    @category.destroy
-    flash[:success] = "Category Deleted"
-    redirect_to admin_categories_path
-  end
+  # def destroy
+  #   @category = Category.find(params[:id])
+  #   @category.destroy
+  #   flash[:success] = "Category Deleted"
+  #   redirect_to admin_categories_path
+  # end
   
   def archive
     Category.archive(params[:id])
-    @categories = Category.where(trashed: false)
+    @categories = Category.categorized.where(trashed: false)
     respond_to do |format|
       format.js {}
       flash.now[:success]="Archive successful"
