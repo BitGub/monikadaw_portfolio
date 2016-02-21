@@ -6,7 +6,7 @@ class Project < ActiveRecord::Base
   validates :year, presence: true
   validates :name, presence: true
   
-  def self.archive
+  def self.archive(id)
     update([id], [{trashed: true}])
   end
 end

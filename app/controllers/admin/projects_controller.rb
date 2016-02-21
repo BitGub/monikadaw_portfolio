@@ -2,7 +2,7 @@ class Admin::ProjectsController < ApplicationController
   before_action :authorize
   
   def index
-    @projects = Project.all
+    @projects = Project.where(trashed: false)
   end
   
   def new
