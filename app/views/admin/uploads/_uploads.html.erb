@@ -1,0 +1,14 @@
+  <% @uploads.each_slice(6) do |uploads| %>
+  <div class="row r-margin">
+    <% uploads.each do |upload| %>
+  <div class='col-md-2'>
+      <h2 class="u-header"><%= upload.title %></h2>
+      <div class="img-100">
+        <%= image_tag upload.upload.url %>
+        <%= link_to "Edit", edit_admin_upload_path(upload)%>
+        <%= link_to "Archive", archive_admin_upload_path(upload)%>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <% end %>
