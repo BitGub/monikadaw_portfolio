@@ -16,7 +16,10 @@ Rails.application.routes.draw do
       end
     end
     
-    resources :uploads
+    resources :uploads do
+      member do
+        post 'archive'
+      end
   end
   # resources :users
   # resources :projects
