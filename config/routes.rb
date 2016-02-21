@@ -7,7 +7,12 @@ Rails.application.routes.draw do
   
   namespace :admin do
     resources :users
-    resources :categories
+    
+    resources :categories do
+      member do
+        get 'archive'
+      end
+    end
     
     resources :projects do  
       collection do
