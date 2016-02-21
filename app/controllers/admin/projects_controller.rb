@@ -50,6 +50,6 @@ class Admin::ProjectsController < ApplicationController
   
   private
     def project_params
-      params.require(:project).permit(:category_id, :name, :description, :year, upload_ids: [])
+      params.require(:project).permit(:category_id, :name, :description, :year, :public, upload_ids: [])
     end
 end
