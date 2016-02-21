@@ -2,7 +2,7 @@ class Admin::CategoriesController < ApplicationController
   before_action :authorize
   
   def index
-    @categories = Category.all
+    @categories = Category.where(trashed: false)
   end
   
   def new
@@ -38,6 +38,15 @@ class Admin::CategoriesController < ApplicationController
     @category.destroy
     flash[:success] = "Category Deleted"
     redirect_to admin_categories_path
+  end
+  
+  def archive
+    Category.archive(params[:id])
+    @categories = Category.where(trashed: false)
+    respond_to do |format|
+      format.js {}
+      flash.now[:success]="Archive successful"
+    end
   end
   
   private
