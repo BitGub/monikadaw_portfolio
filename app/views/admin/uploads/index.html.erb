@@ -7,5 +7,7 @@
 <% if @uploads.blank? %>
   <p>Click the Upload button to upload some photos!</p>
 <% else %>
-  <%= render 'uploads', uploads: @uploads%>
+  <div id="UploadIndex">
+    <%= render 'uploads', uploads: @uploads%>
+  </div>
 <% end %>
