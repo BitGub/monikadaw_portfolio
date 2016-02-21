@@ -2,7 +2,7 @@ class Admin::UploadsController < ApplicationController
   before_action :authorize
   
   def index
-    @uploads = Upload.all
+    @uploads = Upload.where(trashed: false)
   end
   
   def new
@@ -31,6 +31,15 @@ class Admin::UploadsController < ApplicationController
           flash[:danger] = "invalid submission"
           render 'edit'
         end
+  end
+  
+  def archive
+    Upload.archive(params[:id])
+    @uploads = Upload.where(trashed: false)
+    respond_to do |format|
+      format.js {}
+      flash.now[:success]="Archive successful"
+    end
   end
   
   private

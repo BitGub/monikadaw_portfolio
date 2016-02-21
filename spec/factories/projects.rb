@@ -4,6 +4,7 @@ FactoryGirl.define do
     description "This is a description of the project"
     year "2000"
     category
+    public false
   end
 
 end
