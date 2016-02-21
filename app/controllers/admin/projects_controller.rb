@@ -48,6 +48,15 @@ class Admin::ProjectsController < ApplicationController
     session[:upload_ids] = params[:upload_ids]
   end
   
+  def archive
+    Project.archive(params[:id])
+    @projects = Project.where(trashed: false)
+    respond_to do |format|
+      format.js {}
+      flash.now[:success]="Archive successful"
+    end
+  end
+  
   private
     def project_params
       params.require(:project).permit(:category_id, :name, :description, :year, :public, upload_ids: [])
