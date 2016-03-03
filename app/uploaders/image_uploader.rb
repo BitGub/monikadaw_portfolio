@@ -3,8 +3,7 @@
 class ImageUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
-  include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
 
@@ -17,7 +16,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/#{model.user_id.to_s.underscore}/#{model.id}"
+    "uploads/#{model.user.name.underscore}/#{model.id}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -36,15 +35,39 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  # version :thumb do
-  #   process :resize_to_fit => [50, 50]
-  # end
+
+   version :landscape_gallery, if: :is_landscape? do
+       process resize_to_fill: [720, 539]
+     end
+    
+    version :portrait_gallery, if: :is_portrait? do
+      process resize_to_fit: [539, 720]
+    end
+    
+    version :normal do
+      process resize_to_fill: [196, 142]
+    end
+    
+    version :thumb, from: :normal do
+      process resize_to_fill: [90, 90]
+    end
+    
+    def is_landscape? picture
+      image = MiniMagick::Image.open(picture.path)
+      image[:width] > image[:height]
+    end
+    
+    def is_portrait? picture
+      image = MiniMagick::Image.open(picture.path)
+      image[:height] > image[:width]
+    end
+    
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-  # def extension_white_list
-  #   %w(jpg jpeg gif png)
-  # end
+  def extension_white_list
+    %w(jpg jpeg gif png)
+  end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.

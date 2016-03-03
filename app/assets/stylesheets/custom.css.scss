@@ -75,12 +75,24 @@ p {
 /* Images */
 
 
-.img-100 {
-  max-height: 100px;
-  max-width: 100px;
+.img-thumb {
+  height: 90px;
+  width: 90px;
 }
 
-.img-100 img {
+.img-med {
+  height:142px;
+  width:196px;
+}
+
+.img-gallery {
+  height:539;
+  width:720px;
+}
+
+.img-thumb img,
+.img-med img,
+.img-gallery img {
   height: 100%;
   width: 100%;
 }
@@ -92,12 +104,6 @@ p {
 
 }
 
-
-
-//.ui-modal-dialog,.ui-dialog-content,.ui-widget-content {
-//  height: 100%;
-//  border-radius: 0;
-//}
 
 .ui-dialog-titlebar-close {
   visibility: hidden;

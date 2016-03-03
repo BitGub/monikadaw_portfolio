@@ -37,10 +37,11 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass'
 
 gem 'carrierwave'
+gem "mini_magick"
+
 gem "fog"
 
 gem 'mysql2'
-gem 'rmagick'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
