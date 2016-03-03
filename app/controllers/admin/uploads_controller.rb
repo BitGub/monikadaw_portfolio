@@ -45,7 +45,7 @@ class Admin::UploadsController < ApplicationController
   private
   
     def upload_params
-      params.require(:upload).permit(:upload, :title, :description, :year, :position, :user_id)
+      params.require(:upload).permit(:upload, :upload_cache, :title, :description, :position, :user_id)
     end
   
   
