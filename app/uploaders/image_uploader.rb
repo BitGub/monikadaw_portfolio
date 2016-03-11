@@ -8,11 +8,11 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Choose what kind of storage to use for this uploader:
 
-  if Rails.env.production?
+  # if Rails.env.production?
     storage :fog
-  else
-    storage :file
-  end
+  # else
+  #   storage :file
+  # end
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -45,29 +45,31 @@ class ImageUploader < CarrierWave::Uploader::Base
     process resize_to_fill: [90, 90]
   end
   
-  version :landscape_gallery, if: :is_landscape? do
-    process resize_to_fill: [720, 539]
+  version :slider_version do
+    process image_resize: [720, 539]
   end
 
   # version :portrait_gallery, if: :is_portrait? do
   #   process resize_to_fit: [539, 720]
   # end
     
-  def is_landscape? picture
-    image = MiniMagick::Image.open(model.upload.to_s)
-    image[:width] > image[:height]
-  end
-
-  def is_portrait? picture
-    image = MiniMagick::Image.open(model.upload.to_s)
-    image[:height] > image[:width]
-  end
-    
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list
     %w(jpg jpeg gif png)
+  end
+  
+  private
+  
+  def image_resize(width, height)
+    manipulate! do |img|
+      img.combine_options do |c|
+        c.resize      "#{width}x#{height}>"
+        c.resize      "#{width}x#{height}<"
+      end
+      img
+    end
   end
 
   # Override the filename of the uploaded files:
