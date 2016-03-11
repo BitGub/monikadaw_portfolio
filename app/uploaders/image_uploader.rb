@@ -4,6 +4,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   include CarrierWave::MiniMagick
+  # include CarrierWave::RMagick
 
   # Choose what kind of storage to use for this uploader:
 
@@ -16,7 +17,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "#{Rails.root}uploads/#{model.user.name.downcase.tr(" ", "_")}/#{model.id}"
+    "uploads/#{model.user.name.downcase.tr(" ", "_")}/#{model.id}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -35,32 +36,32 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
+  
+  version :normal do
+    process resize_to_fill: [196, 142]
+  end
+  
+  version :thumb, from: :normal do
+    process resize_to_fill: [90, 90]
+  end
+  
+  version :landscape_gallery, if: :is_landscape? do
+    process resize_to_fill: [720, 539]
+  end
 
-   version :landscape_gallery, if: :is_landscape? do
-       process resize_to_fill: [720, 539]
-     end
+  # version :portrait_gallery, if: :is_portrait? do
+  #   process resize_to_fit: [539, 720]
+  # end
     
-    version :portrait_gallery, if: :is_portrait? do
-      process resize_to_fit: [539, 720]
-    end
-    
-    version :normal do
-      process resize_to_fill: [196, 142]
-    end
-    
-    version :thumb, from: :normal do
-      process resize_to_fill: [90, 90]
-    end
-    
-    def is_landscape? picture
-      image = MiniMagick::Image.open(picture.path)
-      image[:width] > image[:height]
-    end
-    
-    def is_portrait? picture
-      image = MiniMagick::Image.open(picture.path)
-      image[:height] > image[:width]
-    end
+  def is_landscape? picture
+    image = MiniMagick::Image.open(model.upload.to_s)
+    image[:width] > image[:height]
+  end
+
+  def is_portrait? picture
+    image = MiniMagick::Image.open(model.upload.to_s)
+    image[:height] > image[:width]
+  end
     
 
   # Add a white list of extensions which are allowed to be uploaded.
