@@ -1,6 +1,6 @@
 $(function(){
   
-  $("p").on('click', "#AttachPhotos", function(evt){
+  $("#AttachPhotos").click (function(evt){
     evt.preventDefault();
 
     $.ajax({

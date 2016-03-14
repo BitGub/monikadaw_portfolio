@@ -6,6 +6,7 @@ class Admin::ProjectsController < ApplicationController
   end
   
   def new
+    session.delete(:upload_ids)
     @project = Project.new
   end
   
@@ -13,7 +14,6 @@ class Admin::ProjectsController < ApplicationController
     @project = Project.new(project_params)
     @project.upload_ids = session[:upload_ids] if session[:upload_ids]
     if @project.save
-      session[:upload_ids] = nil
       flash[:success] = "Project Successfully Created!"
       redirect_to admin_projects_path
     else
@@ -22,14 +22,15 @@ class Admin::ProjectsController < ApplicationController
   end
   
   def edit
+    session.delete(:upload_ids)
     @project = Project.find(params[:id])
     @uploads = Upload.all
   end
   
   def update
     @project = Project.find(params[:id])
+    @project.upload_ids = session[:upload_ids] if session[:upload_ids]
     if @project.update_attributes(project_params)
-      @project.upload_ids = session[:upload_ids] if session[:upload_ids]
       flash[:success] = "Project Successfully updated!"
       redirect_to admin_projects_path
     else
@@ -40,7 +41,6 @@ class Admin::ProjectsController < ApplicationController
   def show_uploads_browser
     @uploads = Upload.all
     @project = Project.where(params[:id]).first
-    
   end
   
   def attach
